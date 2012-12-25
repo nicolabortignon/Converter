@@ -11,6 +11,7 @@
     <png>0</png>
     <qt>0</qt>
     <rnwk>0</rnwk>
+    <swc>0</swc>
     <flashDefaultName>0</flashDefaultName>
     <projectorWinDefaultName>1</projectorWinDefaultName>
     <projectorMacDefaultName>1</projectorMacDefaultName>
@@ -20,27 +21,29 @@
     <pngDefaultName>1</pngDefaultName>
     <qtDefaultName>1</qtDefaultName>
     <rnwkDefaultName>1</rnwkDefaultName>
-    <flashFileName>/Users/nicola/Developer/AS3WavToMp3Converter/bin-debug/Converter.swf</flashFileName>
+    <swcDefaultName>1</swcDefaultName>
+    <flashFileName>/Volumes/Nicola/Developer/MyProject/Converter/bin-debug/Converter.swf</flashFileName>
     <projectorWinFileName>Converter.exe</projectorWinFileName>
     <projectorMacFileName>Converter.app</projectorMacFileName>
-    <htmlFileName>/Users/nicola/Developer/AS3WavToMp3Converter/bin-debug/Converter.html</htmlFileName>
+    <htmlFileName>/Volumes/Nicola/Developer/MyProject/Converter/bin-debug/Converter.html</htmlFileName>
     <gifFileName>Converter.gif</gifFileName>
     <jpegFileName>Converter.jpg</jpegFileName>
     <pngFileName>Converter.png</pngFileName>
     <qtFileName>Converter.mov</qtFileName>
     <rnwkFileName>Converter.smil</rnwkFileName>
+    <swcFileName>Converter.swc</swcFileName>
   </PublishFormatProperties>
   <PublishHtmlProperties enabled="true">
     <VersionDetectionIfAvailable>0</VersionDetectionIfAvailable>
-    <VersionInfo>10,1,0,0;9,0,124,0;8,0,24,0;7,0,14,0;6,0,79,0;5,0,58,0;4,0,32,0;3,0,8,0;2,0,1,12;1,0,0,1;</VersionInfo>
+    <VersionInfo>12,0,0,0;11,2,0,0;11,1,0,0;10,3,0,0;10,2,153,0;10,1,0,0;9,0,124,0;8,0,24,0;7,0,14,0;6,0,79,0;5,0,58,0;4,0,32,0;3,0,8,0;2,0,1,12;1,0,0,1;</VersionInfo>
     <UsingDefaultContentFilename>1</UsingDefaultContentFilename>
     <UsingDefaultAlternateFilename>1</UsingDefaultAlternateFilename>
     <ContentFilename>Converter_content.html</ContentFilename>
     <AlternateFilename>Converter_alternate.html</AlternateFilename>
     <UsingOwnAlternateFile>0</UsingOwnAlternateFile>
     <OwnAlternateFilename></OwnAlternateFilename>
-    <Width>750</Width>
-    <Height>700</Height>
+    <Width>400</Width>
+    <Height>300</Height>
     <Align>0</Align>
     <Units>0</Units>
     <Loop>1</Loop>
@@ -69,8 +72,8 @@
     <EventFormat>0</EventFormat>
     <EventCompress>7</EventCompress>
     <OverrideSounds>0</OverrideSounds>
-    <Version>10</Version>
-    <ExternalPlayer>AdobeAIR2_0</ExternalPlayer>
+    <Version>15</Version>
+    <ExternalPlayer>AdobeAIR3_2</ExternalPlayer>
     <ActionScriptVersion>3</ActionScriptVersion>
     <PackageExportFrame>1</PackageExportFrame>
     <PackagePaths></PackagePaths>
@@ -79,6 +82,7 @@
     <DebuggingPermitted>1</DebuggingPermitted>
     <DebuggingPassword></DebuggingPassword>
     <CompressMovie>1</CompressMovie>
+    <CompressionType>0</CompressionType>
     <InvisibleLayer>1</InvisibleLayer>
     <DeviceSound>0</DeviceSound>
     <StreamUse8kSampleRate>0</StreamUse8kSampleRate>
@@ -107,24 +111,28 @@
       <library-path-entry>
         <swc-path>$(AppConfig)/ActionScript 3.0/libs/11.0/textLayout.swc</swc-path>
         <linkage usesDefault="true">rsl</linkage>
-        <rsl-url>http://fpdownload.adobe.com/pub/swz/tlf/1.0.0.595/textLayout_1.0.0.595.swz</rsl-url>
+        <rsl-url>http://fpdownload.adobe.com/pub/swz/tlf/2.0.0.232/textLayout_2.0.0.232.swz</rsl-url>
         <policy-file-url>http://fpdownload.adobe.com/pub/swz/crossdomain.xml</policy-file-url>
-        <rsl-url>textLayout_1.0.0.595.swz</rsl-url>
+        <rsl-url>textLayout_2.0.0.232.swz</rsl-url>
+      </library-path-entry>
+      <library-path-entry>
+        <swc-path>$(FlexSDK)/frameworks/libs/flex.swc</swc-path>
+        <linkage>merge</linkage>
       </library-path-entry>
     </LibraryPath>
     <LibraryVersions>
       <library-version>
         <swc-path>$(AppConfig)/ActionScript 3.0/libs/11.0/textLayout.swc</swc-path>
-        <feature name="tlfText" majorVersion="1" minorVersion="0" build="595"/>
-        <rsl-url>http://fpdownload.adobe.com/pub/swz/tlf/1.0.0.595/textLayout_1.0.0.595.swz</rsl-url>
+        <feature name="tlfText" majorVersion="2" minorVersion="0" build="232"/>
+        <rsl-url>http://fpdownload.adobe.com/pub/swz/tlf/2.0.0.232/textLayout_2.0.0.232.swz</rsl-url>
         <policy-file-url>http://fpdownload.adobe.com/pub/swz/crossdomain.xml</policy-file-url>
-        <rsl-url>textLayout_1.0.0.595.swz</rsl-url>
+        <rsl-url>textLayout_2.0.0.232.swz</rsl-url>
       </library-version>
     </LibraryVersions>
   </PublishFlashProperties>
   <PublishJpegProperties enabled="true">
-    <Width>750</Width>
-    <Height>700</Height>
+    <Width>400</Width>
+    <Height>300</Height>
     <Progressive>0</Progressive>
     <DPI>4718592</DPI>
     <Size>0</Size>
@@ -149,8 +157,8 @@
     <exportSMIL>1</exportSMIL>
   </PublishRNWKProperties>
   <PublishGifProperties enabled="true">
-    <Width>750</Width>
-    <Height>700</Height>
+    <Width>400</Width>
+    <Height>300</Height>
     <Animated>0</Animated>
     <MatchMovieDim>1</MatchMovieDim>
     <Loop>1</Loop>
@@ -168,8 +176,8 @@
     <PaletteName></PaletteName>
   </PublishGifProperties>
   <PublishPNGProperties enabled="true">
-    <Width>750</Width>
-    <Height>700</Height>
+    <Width>400</Width>
+    <Height>300</Height>
     <OptimizeColors>1</OptimizeColors>
     <Interlace>0</Interlace>
     <Transparent>0</Transparent>
@@ -185,8 +193,8 @@
     <PaletteName></PaletteName>
   </PublishPNGProperties>
   <PublishQTProperties enabled="true">
-    <Width>750</Width>
-    <Height>700</Height>
+    <Width>400</Width>
+    <Height>300</Height>
     <MatchMovieDim>1</MatchMovieDim>
     <UseQTSoundCompression>0</UseQTSoundCompression>
     <AlphaOption></AlphaOption>
