@@ -63,14 +63,22 @@ package
 		
 		public const DRAG_TIME_CONSTANT:int = 500;
 		
+		private var isOptionOpen:Boolean;
+		
 		
 		// GRAPHIC BUTTONS
 		
 		public var openFileButton:MovieClip;
 		public var convertFileButton:MovieClip;
 		public var outputFolder:MovieClip;
+		public var optionButton:MovieClip;
 		
+		public var bitrate64Button:MovieClip;
+		public var bitrate128Button:MovieClip;
+		public var bitrate192Button:MovieClip;
+		public var bitrate320Button:MovieClip;
 		
+		public var currentBitrate:int = 192;
 		
 		public function Converter()
 		{
@@ -120,19 +128,53 @@ package
 			outputFolder.addEventListener(MouseEvent.MOUSE_MOVE, overStateOptionButtons);
 			outputFolder.addEventListener(MouseEvent.MOUSE_OUT, outStateOptionButtons);
 			
-			openFileButton.buttonMode = 
+			optionButton.addEventListener(MouseEvent.MOUSE_DOWN, letDragApplicationHandler);
+			optionButton.addEventListener(MouseEvent.MOUSE_UP, optionHandler);
+			optionButton.addEventListener(MouseEvent.MOUSE_MOVE, overStateOptionButtons);
+			optionButton.addEventListener(MouseEvent.MOUSE_OUT, outStateOptionButtons);
+			
+			
+			bitrate64Button.addEventListener(MouseEvent.CLICK, optionEncodingHandler);
+			bitrate128Button.addEventListener(MouseEvent.CLICK, optionEncodingHandler);
+			bitrate192Button.addEventListener(MouseEvent.CLICK, optionEncodingHandler);
+			bitrate320Button.addEventListener(MouseEvent.CLICK, optionEncodingHandler);
+			
+			bitrate64Button.buttonMode =
+				bitrate128Button.buttonMode =
+				bitrate192Button.buttonMode =
+				bitrate320Button.buttonMode =
+				openFileButton.buttonMode = 
 				outputFolder.buttonMode = 
+				optionButton.buttonMode =
 				convertFileButton.buttonMode = true;
 			
-			openFileButton.mouseChildren = 
+			bitrate64Button.mouseChildren =
+				bitrate128Button.mouseChildren =
+				bitrate192Button.mouseChildren =
+				bitrate320Button.mouseChildren =
+				openFileButton.mouseChildren = 
 				outputFolder.mouseChildren =
+				optionButton.mouseChildren = 
 				convertFileButton.mouseChildren = false;
 			
-			openFileButton.useHandCursor = 
+			bitrate64Button.useHandCursor =
+				bitrate128Button.useHandCursor =
+				bitrate192Button.useHandCursor =
+				bitrate320Button.useHandCursor =
+				openFileButton.useHandCursor = 
+				optionButton.useHandCursor = 
 				outputFolder.useHandCursor =
 				convertFileButton.useHandCursor = true;
 			
+			bitrate64Button.visible =
+				bitrate128Button.visible =
+				bitrate192Button.visible =
+				bitrate320Button.visible = false;
+			
+			bitrate192Button.gotoAndStop(2);
+			
 		}
+		
 		private function overStateOptionButtons(e:MouseEvent):void{
 			if(HitTester.realHitTest(e.target as DisplayObject, new Point(e.stageX, e.stageY))){
 				e.target.gotoAndStop(2);
@@ -228,7 +270,68 @@ package
 			TweenMax.to(bg.close,1,{autoAlpha:0});
 		}
 		
+		private function optionEncodingHandler(e:MouseEvent):void{
+			if(e.target == bitrate64Button){
+				bitrate64Button.gotoAndStop(2);
+				bitrate128Button.gotoAndStop(1);
+				bitrate192Button.gotoAndStop(1);
+				bitrate320Button.gotoAndStop(1);
+				currentBitrate = 64;
+				
+			} else if (e.target == bitrate128Button){
+				bitrate64Button.gotoAndStop(1);
+				bitrate128Button.gotoAndStop(2);
+				bitrate192Button.gotoAndStop(1);
+				bitrate320Button.gotoAndStop(1);
+				currentBitrate = 128;
+				
+			} else if (e.target == bitrate192Button){
+				bitrate64Button.gotoAndStop(1);
+				bitrate128Button.gotoAndStop(1);
+				bitrate192Button.gotoAndStop(2);
+				bitrate320Button.gotoAndStop(1);
+				currentBitrate = 192;
+				
+			} else { // 320 kbps
+				bitrate64Button.gotoAndStop(1);
+				bitrate128Button.gotoAndStop(1);
+				bitrate192Button.gotoAndStop(1);
+				bitrate320Button.gotoAndStop(2);
+				currentBitrate = 320;
+			}
+			closeOptionButtons();
+			
+		}
+		private function closeOptionButtons():void{
+			bitrate64Button.visible =
+				bitrate128Button.visible =
+				bitrate192Button.visible =
+				bitrate320Button.visible = false;
+			isOptionOpen = false;
+		}
+		private function optionHandler(e:MouseEvent):void{
+		 
+			if((getTimer()-startDraggingTime > DRAG_TIME_CONSTANT)  || isEncoding){
+				return;
+			} else {
+				if(isOptionOpen){
+					isOptionOpen = false;
+					bitrate64Button.visible =
+						bitrate128Button.visible =
+						bitrate192Button.visible =
+						bitrate320Button.visible = false;
+				} else {
+					isOptionOpen = true;
+					bitrate64Button.visible =
+						bitrate128Button.visible =
+						bitrate192Button.visible =
+						bitrate320Button.visible = true;
+				}
+			}
+		}
+		
 		private function pickOutputFolderHandler(e:MouseEvent):void{
+			closeOptionButtons();
 			if((getTimer()-startDraggingTime > DRAG_TIME_CONSTANT)  || isEncoding){
 				return;
 			} else {
@@ -246,9 +349,10 @@ package
 		private function directorySelected(event:Event):void 
 		{
 			outputFolderFile = event.target as File;
-		
+			
 		}
 		private function ChooseFile(e:MouseEvent):void{
+			closeOptionButtons();
 			if(getTimer()-startDraggingTime > DRAG_TIME_CONSTANT || isEncoding){
 				return;
 			} else {
@@ -309,7 +413,7 @@ package
 				var args:Vector.<String> = new Vector.<String>;
 				// optional parameters
 				args.push('--abr');
-				args.push(defaultKbpsValue.label);
+				args.push(currentBitrate+ " kbps");
 				/*		args.push('-b');
 				args.push('defaultKbpsValue');
 				args.push('-B');
@@ -385,7 +489,7 @@ package
 		public function updatePercen(i:int):void{
 			progressBar.normalText.text = "Converting: " + i+"%";
 			progressBar.overText.text = "Converting: " + i+"%";
-			trace(i);
+		 
 			TweenMax.to(open.maskBar, .5, {y:32-i*0.16});
 			
 		}
