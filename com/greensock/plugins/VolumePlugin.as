@@ -1,11 +1,10 @@
 /**
- * VERSION: 1.03
- * DATE: 10/2/2009
+ * VERSION: 1.1
+ * DATE: 2010-09-16
  * ACTIONSCRIPT VERSION: 3.0 
- * UPDATES AND DOCUMENTATION AT: http://www.TweenMax.com
+ * UPDATES AND DOCUMENTATION AT: http://www.GreenSock.com
  **/
 package com.greensock.plugins {
-	import flash.display.*;
 	import flash.media.SoundTransform;
 	import com.greensock.*;
 	import com.greensock.plugins.*;
@@ -44,7 +43,7 @@ package com.greensock.plugins {
 		
 		/** @private **/
 		override public function onInitTween(target:Object, value:*, tween:TweenLite):Boolean {
-			if (isNaN(value) || !target.hasOwnProperty("soundTransform")) {
+			if (isNaN(value) || target.hasOwnProperty("volume") || !target.hasOwnProperty("soundTransform")) {
 				return false;
 			}
 			_target = target;

@@ -1,6 +1,11 @@
 CHANGE LOG : GREENSOCK TWEENING PLATFORM
 ----------------------------------------
 
+2010-08-31
+----------------------------------------------
+OverwriteManager	6.03
+	- Worked around a bug in Flash that could (in EXTREMELY rare circumstances) cause an error in OverwriteManager.
+
 2010-05-25
 ----------------------------------------------
 TimelineLite		1.382

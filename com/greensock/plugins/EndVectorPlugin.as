@@ -7,6 +7,8 @@
 package com.greensock.plugins {
 	import com.greensock.*;
 	
+	import __AS3__.vec.Vector; //due to a bug in Flex Builder, this must be included in order to correctly compile a swc
+	
 	import flash.display.*;
 /**
  * Tweens numbers in an Vector.<Number>. Remember, Vectors require that you publish to <strong>Flash Player 10</strong> or later.<br /><br />

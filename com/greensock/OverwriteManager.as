@@ -1,14 +1,12 @@
 ﻿/**
- * VERSION: 6.02
- * DATE: 2010-04-03
+ * VERSION: 6.03
+ * DATE: 2010-08-31
  * AS3 (AS2 is also available)
  * UPDATES AND DOCUMENTATION AT: http://www.greensock.com/overwritemanager/
  **/
 package com.greensock {
 	import com.greensock.core.*;
 	
-	import flash.errors.*;
-	import flash.utils.*;
 /**
  * OverwriteManager resolves conflicts between tweens and controls if (and how) existing tweens of the same
  * target are overwritten. Think of it as a referee or traffic cop for tweens. For example, let's say you have
@@ -161,7 +159,7 @@ package com.greensock {
  */	 
 	public class OverwriteManager {
 		/** @private **/
-		public static const version:Number = 6.02;
+		public static const version:Number = 6.03;
 		/** Won't overwrite any other tweens **/
 		public static const NONE:int 			= 0;
 		/** Overwrites all existing tweens of the same target immediately when the tween is created **/
@@ -367,13 +365,15 @@ package com.greensock {
 		
 		/** @private **/
 		public static function getGlobalPaused(tween:TweenCore):Boolean {
+			var paused:Boolean;
 			while (tween) {
 				if (tween.cachedPaused) {
-					return true;
+					paused = true; //we don't just return true immediately here because of an odd bug in Flash that could (in EXTREMELY rare circumstances) throw an error. 
+					break;
 				}
 				tween = tween.timeline;
 			}
-			return false;
+			return paused;
 		}
 		
 	}
